@@ -3,10 +3,12 @@ package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.service;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.Instructor;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.repository.CrudRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class InstructorService implements BaseService<Instructor> {
     private CrudRepository instructorDaoJpa;
 

@@ -4,10 +4,12 @@ import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.Course;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.repository.CrudRepository;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.repository.jpa.CourseDaoJpaImpl;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Service
 public class CourseService implements BaseService<Course>{
     private CrudRepository courseDaoJpa;
 
