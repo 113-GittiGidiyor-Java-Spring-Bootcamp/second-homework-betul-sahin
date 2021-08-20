@@ -1,5 +1,6 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.repository.hibernate;
 
+import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.Instructor;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.Student;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.repository.CrudRepository;
 import org.hibernate.Session;
@@ -43,6 +44,8 @@ public class StudentDaoHibernateImpl implements CrudRepository<Student> {
 
     @Override
     public void deleteById(Long id) {
-
+        Session session = entityManager.unwrap(Session.class);
+        Student student = session.get(Student.class, id);
+        session.remove(student);
     }
 }

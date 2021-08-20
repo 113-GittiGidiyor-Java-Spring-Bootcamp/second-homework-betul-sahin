@@ -39,7 +39,8 @@ public class InstructorService implements BaseService<Instructor> {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
-
+        instructorDaoJpa.deleteById(id);
     }
 }

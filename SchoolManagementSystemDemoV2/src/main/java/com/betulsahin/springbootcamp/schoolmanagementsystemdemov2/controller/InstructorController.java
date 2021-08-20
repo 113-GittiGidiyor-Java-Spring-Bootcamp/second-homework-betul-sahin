@@ -58,4 +58,10 @@ public class InstructorController {
         instructorService.update(visitingResearcher);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deleteInstructor(@PathVariable Long id){
+        instructorService.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

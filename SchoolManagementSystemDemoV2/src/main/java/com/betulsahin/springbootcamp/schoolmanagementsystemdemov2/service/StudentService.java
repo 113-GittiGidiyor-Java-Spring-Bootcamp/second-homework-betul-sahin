@@ -40,6 +40,8 @@ public class StudentService implements BaseService<Student>{
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
+        studentDaoJpa.deleteById(id);
     }
 }

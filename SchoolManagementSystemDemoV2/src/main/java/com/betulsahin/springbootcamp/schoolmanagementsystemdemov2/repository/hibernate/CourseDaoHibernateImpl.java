@@ -43,6 +43,8 @@ public class CourseDaoHibernateImpl implements CrudRepository<Course> {
 
     @Override
     public void deleteById(Long id) {
-
+        Session session = entityManager.unwrap(Session.class);
+        Course course = session.get(Course.class, id);
+        session.remove(course);
     }
 }

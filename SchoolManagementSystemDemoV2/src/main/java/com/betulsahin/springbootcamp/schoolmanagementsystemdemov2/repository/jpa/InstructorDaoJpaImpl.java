@@ -42,7 +42,9 @@ public class InstructorDaoJpaImpl implements CrudRepository<Instructor> {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
-
+        Instructor instructor = entityManager.find(Instructor.class, id);
+        entityManager.remove(instructor);
     }
 }

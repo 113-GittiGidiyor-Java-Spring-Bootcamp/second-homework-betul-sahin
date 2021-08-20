@@ -42,7 +42,9 @@ public class CourseDaoJpaImpl implements CrudRepository<Course> {
     }
 
     @Override
+    @Transactional
     public void deleteById(Long id) {
-
+        Course course = entityManager.find(Course.class, id);
+        entityManager.remove(course);
     }
 }

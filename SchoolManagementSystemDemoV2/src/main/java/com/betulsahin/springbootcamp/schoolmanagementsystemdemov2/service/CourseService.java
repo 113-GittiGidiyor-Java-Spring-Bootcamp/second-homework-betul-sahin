@@ -41,6 +41,6 @@ public class CourseService implements BaseService<Course>{
 
     @Override
     public void deleteById(Long id) {
-
+        courseDaoJpa.deleteById(id);
     }
 }
