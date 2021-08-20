@@ -16,11 +16,13 @@ public class Course {
     private String code;
     private int creditScore;
 
-    @JsonBackReference
+    // @JsonBackReference
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     private Instructor instructor;
 
-    @JsonManagedReference
+    // @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
     private Set<CourseRegistration> registrations = new HashSet<>();
 

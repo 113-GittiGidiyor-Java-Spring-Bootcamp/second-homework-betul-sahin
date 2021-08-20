@@ -34,6 +34,12 @@ public class CourseService implements BaseService<Course>{
     }
 
     @Override
+    @Transactional
+    public Course update(Course course) {
+        return (Course) courseDaoJpa.update(course);
+    }
+
+    @Override
     public void deleteById(Long id) {
 
     }

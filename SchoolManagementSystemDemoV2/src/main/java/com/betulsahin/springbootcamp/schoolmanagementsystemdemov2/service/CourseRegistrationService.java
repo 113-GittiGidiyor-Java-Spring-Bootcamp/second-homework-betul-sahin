@@ -1,37 +1,37 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.service;
 
+import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.Course;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.CourseRegistration;
+import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.Student;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.repository.CrudRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class CourseRegistrationService implements BaseService<CourseRegistration> {
+public class CourseRegistrationService {
     private CrudRepository courseRegistrationDaoJpa;
+    private CourseService courseService;
+    private StudentService studentService;
 
-    public CourseRegistrationService(@Qualifier("courseRegistrationDaoJpaImpl") CrudRepository courseRegistrationDaoJpa) {
+    public CourseRegistrationService(@Qualifier("courseRegistrationDaoJpaImpl") CrudRepository courseRegistrationDaoJpa,
+                                     CourseService courseService,
+                                     StudentService studentService) {
         this.courseRegistrationDaoJpa = courseRegistrationDaoJpa;
+        this.courseService = courseService;
+        this.studentService = studentService;
     }
 
-    @Override
-    public List<CourseRegistration> findAll() {
-        return courseRegistrationDaoJpa.findAll();
-    }
+    public void register(Long courseId, Long studentId) {
+        Course course = courseService.findById(courseId);
+        Student student = studentService.findById(studentId);
 
-    @Override
-    public CourseRegistration findById(Long id) {
-        return (CourseRegistration) courseRegistrationDaoJpa.findById(id);
-    }
+        CourseRegistration registration = new CourseRegistration(LocalDate.now());
+        registration.setCourse(course);
+        registration.setStudent(student);
 
-    @Override
-    public CourseRegistration save(CourseRegistration courseRegistration) {
-        return (CourseRegistration) courseRegistrationDaoJpa.save(courseRegistration);
-    }
-
-    @Override
-    public void deleteById(Long id) {
-
+        courseRegistrationDaoJpa.save(registration);
     }
 }

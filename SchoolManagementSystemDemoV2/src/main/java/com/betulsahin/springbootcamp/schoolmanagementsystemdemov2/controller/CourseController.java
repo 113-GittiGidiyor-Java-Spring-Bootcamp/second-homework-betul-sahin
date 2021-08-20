@@ -38,4 +38,10 @@ public class CourseController {
         courseService.save(course);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PutMapping
+    public ResponseEntity<Void> editCourse(@RequestBody Course course){
+        courseService.update(course);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

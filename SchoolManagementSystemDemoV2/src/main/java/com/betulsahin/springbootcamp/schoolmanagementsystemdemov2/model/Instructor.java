@@ -1,5 +1,6 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -16,7 +17,8 @@ public class Instructor {
     private String address;
     private String phoneNumber;
 
-    @JsonManagedReference
+    // @JsonManagedReference
+    @JsonIgnore
     @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY)
     private Set<Course> courses = new HashSet<>();
 

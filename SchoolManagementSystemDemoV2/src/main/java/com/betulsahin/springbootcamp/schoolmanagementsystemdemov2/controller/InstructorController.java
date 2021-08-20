@@ -46,4 +46,16 @@ public class InstructorController {
         instructorService.save(visitingResearcher);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @PutMapping("/permanent")
+    public ResponseEntity<Void> editPermanentInstructor(@RequestBody PermanentInstructor permanentInstructor){
+        instructorService.update(permanentInstructor);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping("/visitingresearcher")
+    public ResponseEntity<Void> editVisitingResearcher(@RequestBody VisitingResearcher visitingResearcher){
+        instructorService.update(visitingResearcher);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

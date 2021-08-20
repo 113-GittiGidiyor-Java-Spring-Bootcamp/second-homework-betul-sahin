@@ -62,60 +62,17 @@ public class SchoolManagementSystemDemoV2Application {
             course8 = courseService.save(course8);
 
             // save student to courses
-            CourseRegistration registration1 = new CourseRegistration(LocalDate.now());
-            registration1.setCourse(course1);
-            registration1.setStudent(student1);
-            courseRegistrationService.save(registration1);
-
-            CourseRegistration registration2 = new CourseRegistration(LocalDate.now());
-            registration2.setCourse(course2);
-            registration2.setStudent(student1);
-            courseRegistrationService.save(registration2);
-
-            CourseRegistration registration3 = new CourseRegistration(LocalDate.now());
-            registration3.setCourse(course3);
-            registration3.setStudent(student2);
-            courseRegistrationService.save(registration3);
-
-            CourseRegistration registration4 = new CourseRegistration(LocalDate.now());
-            registration4.setCourse(course2);
-            registration4.setStudent(student2);
-            courseRegistrationService.save(registration4);
-
-            CourseRegistration registration5 = new CourseRegistration(LocalDate.now());
-            registration5.setCourse(course4);
-            registration5.setStudent(student2);
-            courseRegistrationService.save(registration5);
-
-            CourseRegistration registration6 = new CourseRegistration(LocalDate.now());
-            registration6.setCourse(course6);
-            registration6.setStudent(student4);
-            courseRegistrationService.save(registration6);
-
-            CourseRegistration registration7 = new CourseRegistration(LocalDate.now());
-            registration7.setCourse(course7);
-            registration7.setStudent(student4);
-            courseRegistrationService.save(registration7);
-
-            CourseRegistration registration8 = new CourseRegistration(LocalDate.now());
-            registration8.setCourse(course8);
-            registration8.setStudent(student4);
-            courseRegistrationService.save(registration8);
-
-            CourseRegistration registration9 = new CourseRegistration(LocalDate.now());
-            registration9.setCourse(course1);
-            registration9.setStudent(student5);
-            courseRegistrationService.save(registration9);
-
-            CourseRegistration registration10 = new CourseRegistration(LocalDate.now());
-            registration10.setCourse(course5);
-            registration10.setStudent(student5);
-            courseRegistrationService.save(registration10);
-
-            CourseRegistration registration11 = new CourseRegistration(LocalDate.now());
-            registration11.setCourse(course7);
-            registration11.setStudent(student5);
-            courseRegistrationService.save(registration11);
+            courseRegistrationService.register(course1.getId(), student1.getId());
+            courseRegistrationService.register(course2.getId(), student1.getId());
+            courseRegistrationService.register(course3.getId(), student2.getId());
+            courseRegistrationService.register(course2.getId(), student2.getId());
+            courseRegistrationService.register(course4.getId(), student2.getId());
+            courseRegistrationService.register(course6.getId(), student4.getId());
+            courseRegistrationService.register(course7.getId(), student4.getId());
+            courseRegistrationService.register(course8.getId(), student4.getId());
+            courseRegistrationService.register(course1.getId(), student5.getId());
+            courseRegistrationService.register(course5.getId(), student5.getId());
+            courseRegistrationService.register(course7.getId(), student5.getId());
 
             // create instructors
             Instructor instructor1 = new VisitingResearcher("Şadi Evren Şeker", "İstanbul", "05554331256", 40, 250.0);

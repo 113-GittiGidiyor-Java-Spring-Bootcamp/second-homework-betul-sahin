@@ -33,6 +33,12 @@ public class InstructorService implements BaseService<Instructor> {
     }
 
     @Override
+    @Transactional
+    public Instructor update(Instructor instructor) {
+        return (Instructor) instructorDaoJpa.update(instructor);
+    }
+
+    @Override
     public void deleteById(Long id) {
 
     }

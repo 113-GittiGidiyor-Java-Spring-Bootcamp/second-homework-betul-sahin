@@ -34,6 +34,12 @@ public class StudentService implements BaseService<Student>{
     }
 
     @Override
+    @Transactional
+    public Student update(Student student) {
+        return (Student) studentDaoJpa.update(student);
+    }
+
+    @Override
     public void deleteById(Long id) {
     }
 }

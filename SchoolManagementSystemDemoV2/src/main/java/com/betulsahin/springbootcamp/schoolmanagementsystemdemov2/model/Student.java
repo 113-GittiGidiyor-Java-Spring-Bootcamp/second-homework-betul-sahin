@@ -17,7 +17,8 @@ public class Student {
     private String address;
     private String gender;
 
-    @JsonManagedReference
+    // @JsonManagedReference (Status 415 hatasindan dolayi silindi.)
+    @JsonIgnore
     @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private Set<CourseRegistration> registrations = new HashSet<>();
 
