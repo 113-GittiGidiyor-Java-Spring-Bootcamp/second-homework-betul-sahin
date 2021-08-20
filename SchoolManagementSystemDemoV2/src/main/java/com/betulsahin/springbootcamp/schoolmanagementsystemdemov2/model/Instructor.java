@@ -1,11 +1,10 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -17,9 +16,9 @@ public class Instructor {
     private String address;
     private String phoneNumber;
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY)
-    private List<Course> courses = new ArrayList<>();
+    private Set<Course> courses = new HashSet<>();
 
     public Instructor(String name, String address, String phoneNumber) {
         this.name = name;
@@ -62,11 +61,11 @@ public class Instructor {
         this.phoneNumber = phoneNumber;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(Set<Course> courses) {
         this.courses = courses;
     }
 

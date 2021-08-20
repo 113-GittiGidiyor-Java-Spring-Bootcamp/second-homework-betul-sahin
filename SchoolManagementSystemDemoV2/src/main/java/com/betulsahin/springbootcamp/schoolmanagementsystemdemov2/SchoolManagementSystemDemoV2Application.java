@@ -4,6 +4,7 @@ import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.*;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.service.CourseService;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.service.InstructorService;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.service.StudentService;
+import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.service.CourseRegistrationService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,6 +23,7 @@ public class SchoolManagementSystemDemoV2Application {
     @Bean
     public CommandLineRunner loadTestData(StudentService studentService,
                                           CourseService courseService,
+                                          CourseRegistrationService courseRegistrationService,
                                           InstructorService instructorService){
         return args -> {
 
@@ -59,24 +61,61 @@ public class SchoolManagementSystemDemoV2Application {
             course7 = courseService.save(course7);
             course8 = courseService.save(course8);
 
-            // add courses to student
-            student1.getCourses().add(course1);
-            student1.getCourses().add(course2);
-            student2.getCourses().add(course3);
-            student2.getCourses().add(course2);
-            student2.getCourses().add(course4);
-            student4.getCourses().add(course6);
-            student4.getCourses().add(course7);
-            student4.getCourses().add(course8);
-            student5.getCourses().add(course1);
-            student5.getCourses().add(course5);
-            student5.getCourses().add(course7);
+            // save student to courses
+            CourseRegistration registration1 = new CourseRegistration(LocalDate.now());
+            registration1.setCourse(course1);
+            registration1.setStudent(student1);
+            courseRegistrationService.save(registration1);
 
-            // update students
-            studentService.save(student1);
-            studentService.save(student2);
-            studentService.save(student4);
-            studentService.save(student5);
+            CourseRegistration registration2 = new CourseRegistration(LocalDate.now());
+            registration2.setCourse(course2);
+            registration2.setStudent(student1);
+            courseRegistrationService.save(registration2);
+
+            CourseRegistration registration3 = new CourseRegistration(LocalDate.now());
+            registration3.setCourse(course3);
+            registration3.setStudent(student2);
+            courseRegistrationService.save(registration3);
+
+            CourseRegistration registration4 = new CourseRegistration(LocalDate.now());
+            registration4.setCourse(course2);
+            registration4.setStudent(student2);
+            courseRegistrationService.save(registration4);
+
+            CourseRegistration registration5 = new CourseRegistration(LocalDate.now());
+            registration5.setCourse(course4);
+            registration5.setStudent(student2);
+            courseRegistrationService.save(registration5);
+
+            CourseRegistration registration6 = new CourseRegistration(LocalDate.now());
+            registration6.setCourse(course6);
+            registration6.setStudent(student4);
+            courseRegistrationService.save(registration6);
+
+            CourseRegistration registration7 = new CourseRegistration(LocalDate.now());
+            registration7.setCourse(course7);
+            registration7.setStudent(student4);
+            courseRegistrationService.save(registration7);
+
+            CourseRegistration registration8 = new CourseRegistration(LocalDate.now());
+            registration8.setCourse(course8);
+            registration8.setStudent(student4);
+            courseRegistrationService.save(registration8);
+
+            CourseRegistration registration9 = new CourseRegistration(LocalDate.now());
+            registration9.setCourse(course1);
+            registration9.setStudent(student5);
+            courseRegistrationService.save(registration9);
+
+            CourseRegistration registration10 = new CourseRegistration(LocalDate.now());
+            registration10.setCourse(course5);
+            registration10.setStudent(student5);
+            courseRegistrationService.save(registration10);
+
+            CourseRegistration registration11 = new CourseRegistration(LocalDate.now());
+            registration11.setCourse(course7);
+            registration11.setStudent(student5);
+            courseRegistrationService.save(registration11);
 
             // create instructors
             Instructor instructor1 = new VisitingResearcher("Şadi Evren Şeker", "İstanbul", "05554331256", 40, 250.0);
@@ -97,16 +136,6 @@ public class SchoolManagementSystemDemoV2Application {
             instructor6 = instructorService.save(instructor6);
             instructor7 = instructorService.save(instructor7);
             instructor8 = instructorService.save(instructor8);
-
-            // add courses to instrustors
-            instructor1.getCourses().add(course1);
-            instructor5.getCourses().add(course2);
-            instructor6.getCourses().add(course3);
-            instructor2.getCourses().add(course6);
-            instructor2.getCourses().add(course7);
-            instructor2.getCourses().add(course8);
-            instructor4.getCourses().add(course4);
-            instructor7.getCourses().add(course5);
 
             // update instructors
             instructorService.save(instructor1);
@@ -135,6 +164,7 @@ public class SchoolManagementSystemDemoV2Application {
             courseService.save(course6);
             courseService.save(course7);
             courseService.save(course8);
+
         };
     }
 }

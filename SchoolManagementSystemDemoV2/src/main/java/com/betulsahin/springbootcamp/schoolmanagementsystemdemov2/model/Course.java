@@ -1,6 +1,8 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.*;
@@ -14,12 +16,13 @@ public class Course {
     private String code;
     private int creditScore;
 
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     private Instructor instructor;
 
-    @JsonIgnore
-    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
-    private Set<Student> students = new HashSet<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    private Set<CourseRegistration> registrations = new HashSet<>();
 
     public Course(String name, String code, int creditScore) {
         this.name = name;
@@ -70,12 +73,12 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public Set<Student> getStudents() {
-        return students;
+    public Set<CourseRegistration> getRegistrations() {
+        return registrations;
     }
 
-    public void setStudents(Set<Student> students) {
-        this.students = students;
+    public void setRegistrations(Set<CourseRegistration> registrations) {
+        this.registrations = registrations;
     }
 
     @Override

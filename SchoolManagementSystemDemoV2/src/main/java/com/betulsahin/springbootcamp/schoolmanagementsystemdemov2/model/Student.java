@@ -1,6 +1,7 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -16,9 +17,9 @@ public class Student {
     private String address;
     private String gender;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Set<Course> courses = new HashSet<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
+    private Set<CourseRegistration> registrations = new HashSet<>();
 
     public Student(String name, LocalDate birthdate, String address, String gender) {
         this.name = name;
@@ -70,12 +71,12 @@ public class Student {
         this.gender = gender;
     }
 
-    public Set<Course> getCourses() {
-        return courses;
+    public Set<CourseRegistration> getRegistrations() {
+        return registrations;
     }
 
-    public void setCourses(Set<Course> courses) {
-        this.courses = courses;
+    public void setRegistrations(Set<CourseRegistration> registrations) {
+        this.registrations = registrations;
     }
 
     @Override

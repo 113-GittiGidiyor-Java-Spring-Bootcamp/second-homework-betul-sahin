@@ -18,7 +18,7 @@ public class CourseService implements BaseService<Course>{
     }
 
     @Override
-    public List findAll() {
+    public List<Course> findAll() {
         return courseDaoJpa.findAll();
     }
 
