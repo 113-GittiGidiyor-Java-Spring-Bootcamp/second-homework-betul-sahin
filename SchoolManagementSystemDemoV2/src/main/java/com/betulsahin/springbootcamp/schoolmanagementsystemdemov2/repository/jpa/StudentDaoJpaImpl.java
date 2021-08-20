@@ -37,6 +37,19 @@ public class StudentDaoJpaImpl implements CrudRepository<Student> {
     }
 
     @Override
+    @Transactional
+    public Student update(Student student) {
+        /*
+        Student updatedStudent = entityManager.find(Student.class, student.getId());
+        updatedStudent.setAddress(student.getAddress());
+        updatedStudent.setName(student.getName());
+        updatedStudent.setBirthdate(student.getBirthdate());
+        updatedStudent.setGender(student.getGender());
+        */
+        return entityManager.merge(student);
+    }
+
+    @Override
     public void deleteById(Long id) {
 
     }

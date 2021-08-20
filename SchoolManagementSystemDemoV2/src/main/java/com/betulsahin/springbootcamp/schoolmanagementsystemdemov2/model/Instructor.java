@@ -1,5 +1,7 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,11 +17,11 @@ public class Instructor {
     private String address;
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "instructor")
+    @JsonIgnore
+    @OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY)
     private List<Course> courses = new ArrayList<>();
 
-    public Instructor(Long id, String name, String address, String phoneNumber) {
-        this.id = id;
+    public Instructor(String name, String address, String phoneNumber) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;

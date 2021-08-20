@@ -1,10 +1,10 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Student {
@@ -14,23 +14,20 @@ public class Student {
     private String name;
     private LocalDate birthdate;
     private String address;
-    private GenderType gender;
+    private String gender;
 
-    @ManyToMany
-    private List<Course> courses;
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Set<Course> courses = new HashSet<>();
 
-    public Student(Long id, String name, LocalDate birthdate, String address, GenderType gender) {
-        this.id = id;
+    public Student(String name, LocalDate birthdate, String address, String gender) {
         this.name = name;
         this.birthdate = birthdate;
         this.address = address;
         this.gender = gender;
-
-        this.courses = new ArrayList<>();
     }
 
     public Student() {
-        this.courses = new ArrayList<>();
     }
 
     public Long getId() {
@@ -65,19 +62,19 @@ public class Student {
         this.address = address;
     }
 
-    public GenderType getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(GenderType gender) {
+    public void setGender(String gender) {
         this.gender = gender;
     }
 
-    public List<Course> getCourses() {
+    public Set<Course> getCourses() {
         return courses;
     }
 
-    public void setCourses(List<Course> courses) {
+    public void setCourses(Set<Course> courses) {
         this.courses = courses;
     }
 

@@ -1,9 +1,9 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 @Entity
 public class Course {
@@ -14,14 +14,14 @@ public class Course {
     private String code;
     private int creditScore;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Instructor instructor;
 
-    @ManyToMany(mappedBy = "courses")
-    private List<Student> students = new ArrayList<>();
+    @JsonIgnore
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
+    private Set<Student> students = new HashSet<>();
 
-    public Course(Long id, String name, String code, int creditScore) {
-        this.id = id;
+    public Course(String name, String code, int creditScore) {
         this.name = name;
         this.code = code;
         this.creditScore = creditScore;
@@ -70,11 +70,11 @@ public class Course {
         this.instructor = instructor;
     }
 
-    public List<Student> getStudents() {
+    public Set<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<Student> students) {
         this.students = students;
     }
 

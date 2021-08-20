@@ -36,6 +36,12 @@ public class CourseDaoJpaImpl implements CrudRepository<Course> {
     }
 
     @Override
+    @Transactional
+    public Course update(Course course) {
+        return entityManager.merge(course);
+    }
+
+    @Override
     public void deleteById(Long id) {
 
     }

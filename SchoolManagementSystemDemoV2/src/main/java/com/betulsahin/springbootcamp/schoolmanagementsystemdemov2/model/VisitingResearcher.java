@@ -8,8 +8,8 @@ public class VisitingResearcher extends Instructor {
     private int monthlyWorkingHours;
     private double hourlyRate;
 
-    public VisitingResearcher(Long id, String name, String address, String phoneNumber, int monthlyWorkingHours, double hourlyRate) {
-        super(id, name, address, phoneNumber);
+    public VisitingResearcher(String name, String address, String phoneNumber, int monthlyWorkingHours, double hourlyRate) {
+        super(name, address, phoneNumber);
         this.monthlyWorkingHours = monthlyWorkingHours;
         this.hourlyRate = hourlyRate;
     }

@@ -7,8 +7,8 @@ import java.util.Objects;
 public class PermanentInstructor extends Instructor{
     private double salary;
 
-    public PermanentInstructor(Long id, String name, String address, String phoneNumber, double salary) {
-        super(id, name, address, phoneNumber);
+    public PermanentInstructor(String name, String address, String phoneNumber, double salary) {
+        super(name, address, phoneNumber);
         this.salary = salary;
     }
 

@@ -1,6 +1,8 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.controller;
 
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.Instructor;
+import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.PermanentInstructor;
+import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model.VisitingResearcher;
 import com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.service.InstructorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,9 +35,15 @@ public class InstructorController {
                 HttpStatus.OK);
     }
 
-    @PostMapping
-    public ResponseEntity<Void> createInstructor(@RequestBody Instructor instructor){
-        instructorService.save(instructor);
+    @PostMapping("/permanent")
+    public ResponseEntity<Void> createPermanentInstructor(@RequestBody PermanentInstructor permanentInstructor){
+        instructorService.save(permanentInstructor);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    @PostMapping("/visitingresearcher")
+    public ResponseEntity<Void> createVisitingResearcher(@RequestBody VisitingResearcher visitingResearcher){
+        instructorService.save(visitingResearcher);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }

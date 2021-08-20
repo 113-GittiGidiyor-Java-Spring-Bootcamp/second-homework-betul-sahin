@@ -35,6 +35,12 @@ public class InstructorDaoHibernateImpl implements CrudRepository<Instructor> {
     }
 
     @Override
+    public Instructor update(Instructor instructor) {
+        Session session = entityManager.unwrap(Session.class);
+        return (Instructor) session.merge(instructor);
+    }
+
+    @Override
     public void deleteById(Long id) {
 
     }

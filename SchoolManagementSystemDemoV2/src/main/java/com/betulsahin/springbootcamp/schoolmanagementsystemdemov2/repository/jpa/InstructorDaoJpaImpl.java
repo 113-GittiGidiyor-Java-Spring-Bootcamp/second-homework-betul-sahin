@@ -36,6 +36,12 @@ public class InstructorDaoJpaImpl implements CrudRepository<Instructor> {
     }
 
     @Override
+    @Transactional
+    public Instructor update(Instructor instructor) {
+        return entityManager.merge(instructor);
+    }
+
+    @Override
     public void deleteById(Long id) {
 
     }
