@@ -35,7 +35,7 @@ public class InstructorController {
                 HttpStatus.OK);
     }
 
-    @PostMapping("/permanent")
+    /*@PostMapping("/permanent")
     public ResponseEntity<Void> createPermanentInstructor(@RequestBody PermanentInstructor permanentInstructor){
         instructorService.save(permanentInstructor);
         return new ResponseEntity<>(HttpStatus.CREATED);
@@ -44,6 +44,12 @@ public class InstructorController {
     @PostMapping("/visitingresearcher")
     public ResponseEntity<Void> createVisitingResearcher(@RequestBody VisitingResearcher visitingResearcher){
         instructorService.save(visitingResearcher);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }*/
+
+    @PostMapping
+    public ResponseEntity<Void> createInstructor(@RequestBody Instructor instructor){
+        instructorService.save(instructor);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 

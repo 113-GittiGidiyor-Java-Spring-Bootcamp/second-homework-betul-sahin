@@ -1,14 +1,20 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = PermanentInstructor.class, name = "permanentInstructor"),
+        @JsonSubTypes.Type(value = VisitingResearcher.class, name = "visitingResearcher")
+})
 public class Instructor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

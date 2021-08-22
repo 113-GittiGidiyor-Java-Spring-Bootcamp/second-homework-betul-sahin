@@ -1,9 +1,12 @@
 package com.betulsahin.springbootcamp.schoolmanagementsystemdemov2.model;
 
+import com.fasterxml.jackson.annotation.JsonTypeName;
+
 import javax.persistence.Entity;
 import java.util.Objects;
 
 @Entity
+@JsonTypeName("visitingResearcher")
 public class VisitingResearcher extends Instructor {
     private int monthlyWorkingHours;
     private double hourlyRate;
