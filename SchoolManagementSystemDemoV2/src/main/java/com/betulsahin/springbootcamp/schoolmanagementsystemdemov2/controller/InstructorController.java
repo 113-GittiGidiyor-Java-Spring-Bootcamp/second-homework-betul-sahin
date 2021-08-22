@@ -53,7 +53,13 @@ public class InstructorController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping("/permanent")
+    @PutMapping("/edit")
+    public ResponseEntity<Void> editInstructor(@RequestBody Instructor instructor){
+        instructorService.update(instructor);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /*@PutMapping("/permanent")
     public ResponseEntity<Void> editPermanentInstructor(@RequestBody PermanentInstructor permanentInstructor){
         instructorService.update(permanentInstructor);
         return new ResponseEntity<>(HttpStatus.OK);
@@ -63,7 +69,7 @@ public class InstructorController {
     public ResponseEntity<Void> editVisitingResearcher(@RequestBody VisitingResearcher visitingResearcher){
         instructorService.update(visitingResearcher);
         return new ResponseEntity<>(HttpStatus.OK);
-    }
+    }*/
 
     @DeleteMapping("{id}")
     public ResponseEntity<Void> deleteInstructor(@PathVariable Long id){
